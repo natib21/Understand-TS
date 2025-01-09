@@ -14,3 +14,4 @@ const resultPhrase= 'Result is: '
 
 add(num1,num2,printResult,resultPhrase)
 
+// Type Inference is a process that automatically assigns types to variables, functions, and constants in a program
