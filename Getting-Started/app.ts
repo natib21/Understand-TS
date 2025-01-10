@@ -18,7 +18,9 @@ add(num1,num2,printResult,resultPhrase)
 
 // Union Types
 
-function combine(input1 : number|string, input2 : number|string){
+type Combinable = number | string
+
+function combine(input1 : Combinable, input2 : Combinable){
     let result;
     if (typeof input1 === 'number' && typeof input2 === 'number'){
         result = input1 + input2
