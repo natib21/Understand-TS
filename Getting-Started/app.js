@@ -54,7 +54,13 @@ console.log(combineInputS);
 function adder(n1, n2) {
     return n1 + n2;
 }
+// void doesn't return anything 
 function printResult2(num) {
     console.log('result: ' + num);
 }
 printResult2(adder(10, 34));
+/////////////////////////////////////////////////////////////
+// Function as Type 
+var combinedValues;
+combinedValues = adder;
+console.log(combinedValues(8, 8));

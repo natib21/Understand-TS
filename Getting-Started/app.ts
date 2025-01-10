@@ -91,3 +91,11 @@ printResult2(adder(10,34))
 
 
 /////////////////////////////////////////////////////////////
+
+// Function as Type 
+
+let combinedValues: Function
+
+combinedValues = adder
+combinedValues = 5
+console.log(combinedValues(8,8))
