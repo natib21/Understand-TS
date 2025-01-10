@@ -2,10 +2,12 @@ const person:{
     name: string;
     age: number;
     hobbies:string[];
+    role:any[]
 } = {
     name: "Nathnael",
     age:  28,
-    hobbies:["Sport","Cooking"]
+    hobbies:["Sport","Cooking"],
+    role:[2,'author']
 }
 
 console.log(person.name)
