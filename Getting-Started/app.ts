@@ -94,8 +94,22 @@ printResult2(adder(10,34))
 
 // Function as Type 
 
-let combinedValues: Function
+let combinedValues: (a:number , b:number)=>number
 
 combinedValues = adder
-combinedValues = 5
+// combinedValues = 5
+// combinedValues = printResult2
 console.log(combinedValues(8,8))
+
+///////////////////////////////////////////////////////////
+
+// Function Type Callback
+
+function addAndHandle(n1:number,n2:number,cb:(num:number)=> void){
+    const result = n1 + n2;
+    cb(result)
+}
+
+addAndHandle(8,10,(result)=> {
+   console.log(result)
+})
