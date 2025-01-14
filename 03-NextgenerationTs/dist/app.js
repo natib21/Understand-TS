@@ -30,9 +30,14 @@ activeHobbies.push(...hobbies);
 console.log(activeHobbies);
 // 2.2) Object Spread Operator
 const person = {
-    name: "Nati",
+    firstName: "Nati",
     age: 28
 };
 const copiedPerson = Object.assign({}, person);
 console.log(copiedPerson);
 //////////////////////////////////////
+// 3) Array & Object Destructuring
+const [hobby1, hobby2] = hobbies;
+console.log(hobby1, hobby2);
+const { firstName, age } = person;
+console.log(firstName);
