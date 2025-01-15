@@ -1,6 +1,5 @@
 class Department {
-   
-    private employee:string[] = [];
+    protected employee:string[] = [];
 
     constructor(private readonly id : string ,public name : string){
         
@@ -18,8 +17,8 @@ class Department {
         console.log(this.employee)
     }
 
-
 }
+
 
 
 class ITDepartment extends Department {
@@ -33,11 +32,19 @@ class ITDepartment extends Department {
 }
 
 
+
 class AccountingDepartment extends Department {
     private reports: string[]
     constructor(id:string, reports:string[]) {
        super(id ,"Accounting");
        this.reports = reports
+    }
+
+    addEmployee(e: string) {
+        if(e === "Lisa"){
+            return
+        }
+        this.employee.push(e)
     }
     addReports(reports:string){
         this.reports.push(reports)

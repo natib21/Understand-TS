@@ -27,6 +27,12 @@ class AccountingDepartment extends Department {
         super(id, "Accounting");
         this.reports = reports;
     }
+    addEmployee(e) {
+        if (e === "Lisa") {
+            return;
+        }
+        this.employee.push(e);
+    }
     addReports(reports) {
         this.reports.push(reports);
     }
