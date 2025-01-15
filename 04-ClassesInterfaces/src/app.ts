@@ -1,12 +1,12 @@
 class Department {
-    name :string;
+   
     private employee:string[] = [];
 
-    constructor(n:string){
-        this.name = n
+    constructor(private readonly id : string ,public name : string){
+        
     }
     describe(this:Department){
-        console.log('Department '+this.name)
+        console.log('Department '+this.id +" "+ this.name)
     }
 
     addEmployee(e: string){
@@ -22,14 +22,81 @@ class Department {
 }
 
 
-const accounting = new Department("Accounting")
+class ITDepartment extends Department {
 
-accounting.describe()
+  admins:string[];
+
+   constructor(id:string,admins:string []){
+      super(id , "It");
+      this.admins = admins
+   }
+}
+
+
+class AccountingDepartment extends Department {
+    private reports: string[]
+    constructor(id:string, reports:string[]) {
+       super(id ,"Accounting");
+       this.reports = reports
+    }
+    addReports(reports:string){
+        this.reports.push(reports)
+    }
+    printReport(){
+        console.log(this.reports)
+    }
+
+}
+
+
+
+
+const accounting = new ITDepartment("0001",['Max'])
 
 accounting.addEmployee("Musk")
 accounting.addEmployee("Natty")
 
-accounting.PrintEmployee()
+console.log(accounting)
+
+const AccountingDep = new AccountingDepartment("0002",["Exam Result"])
+
+AccountingDep.addEmployee("Lisa")
+AccountingDep.addEmployee("Alisa")
+AccountingDep.addReports("This is the Exam Report")
+
+
+console.log(AccountingDep)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
