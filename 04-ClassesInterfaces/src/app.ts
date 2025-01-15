@@ -1,15 +1,37 @@
 class Department {
     name :string;
-    
+    private employee:string[] = [];
+
     constructor(n:string){
         this.name = n
     }
+    describe(this:Department){
+        console.log('Department '+this.name)
+    }
+
+    addEmployee(e: string){
+      this.employee.push(e)
+    }
+
+    PrintEmployee(){
+        console.log(this.employee.length)
+        console.log(this.employee)
+    }
+
+
 }
 
 
 const accounting = new Department("Accounting")
 
-console.log(accounting)
+accounting.describe()
+
+accounting.addEmployee("Musk")
+accounting.addEmployee("Natty")
+
+accounting.PrintEmployee()
+
+
 
 /* 
     A class in JavaScript (and TypeScript) is a blueprint

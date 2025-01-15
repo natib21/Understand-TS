@@ -1,11 +1,25 @@
 "use strict";
 class Department {
     constructor(n) {
+        this.employee = [];
         this.name = n;
+    }
+    describe() {
+        console.log('Department ' + this.name);
+    }
+    addEmployee(e) {
+        this.employee.push(e);
+    }
+    PrintEmployee() {
+        console.log(this.employee.length);
+        console.log(this.employee);
     }
 }
 const accounting = new Department("Accounting");
-console.log(accounting);
+accounting.describe();
+accounting.addEmployee("Musk");
+accounting.addEmployee("Natty");
+accounting.PrintEmployee();
 /*
     A class in JavaScript (and TypeScript) is a blueprint
    for creating objects that share similar properties and methods.
