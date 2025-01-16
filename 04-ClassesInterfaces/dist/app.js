@@ -1,5 +1,9 @@
 "use strict";
 // 1) Interface
+let add;
+add = (a, b) => {
+    return a + b;
+};
 class Person {
     constructor(n, age) {
         this.name = n;
