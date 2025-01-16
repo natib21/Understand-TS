@@ -9,6 +9,7 @@ class Person {
         console.log(phrase + ' ' + this.name);
     }
 }
-const user1 = new Person("Nathnael", 28);
+let user1;
+user1 = new Person("Nathnael", 28);
 user1.greet("Hi there - I am");
 console.log(user1);

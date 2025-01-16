@@ -3,13 +3,18 @@
 // 1.1) What is an Interface ?
 //      It Describe the Sructure of An Object 
 
-interface Greetable {
-    name:string;
+interface Named {
+ readonly name:string;
+}
+
+
+interface Greetable extends Named {
+   
     greet(phrase: string): void
 
 }
 
-class Person implements Greetable {
+class Person implements Greetable{
    
     name:string;
     age:number
@@ -23,8 +28,8 @@ class Person implements Greetable {
     }
 
 }
-
-const user1 = new Person("Nathnael",28)
+let user1: Greetable
+user1 = new Person("Nathnael",28)
 
 user1.greet("Hi there - I am")
 console.log(user1)
