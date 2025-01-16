@@ -4,6 +4,10 @@ class Department {
     constructor(private readonly id : string ,public name : string){
         
     }
+
+    static createEmployee(name:string){
+        return {name}
+    }
     describe(this:Department){
         console.log('Department '+this.id +" "+ this.name)
     }
@@ -19,8 +23,6 @@ class Department {
 
 }
 
-
-
 class ITDepartment extends Department {
 
   admins:string[];
@@ -31,13 +33,32 @@ class ITDepartment extends Department {
    }
 }
 
-
-
 class AccountingDepartment extends Department {
+
+    private lastReport: string
     private reports: string[]
+
     constructor(id:string, reports:string[]) {
        super(id ,"Accounting");
-       this.reports = reports
+       this.reports = reports;
+       this.lastReport = reports[0]
+    }
+
+    get mostRecentReport(){
+
+        if(this.lastReport){
+            return this.lastReport
+        }
+        throw new Error("No Report Found")
+    }
+
+    set mostRecentReport(value: string){
+      if(!value){
+
+        throw new Error('Please Pass in a valid value!')
+
+      }
+       this.addReports(value)
     }
 
     addEmployee(e: string) {
@@ -47,7 +68,10 @@ class AccountingDepartment extends Department {
         this.employee.push(e)
     }
     addReports(reports:string){
+
         this.reports.push(reports)
+        this.lastReport = reports
+
     }
     printReport(){
         console.log(this.reports)
@@ -65,8 +89,15 @@ accounting.addEmployee("Natty")
 
 console.log(accounting)
 
+const employee = Department.createEmployee("Nati")
+
+console.log(employee)
+
 const AccountingDep = new AccountingDepartment("0002",["Exam Result"])
 
+console.log(AccountingDep.mostRecentReport)
+
+AccountingDep.mostRecentReport = 'Year and Report'
 AccountingDep.addEmployee("Lisa")
 AccountingDep.addEmployee("Alisa")
 AccountingDep.addReports("This is the Exam Report")
