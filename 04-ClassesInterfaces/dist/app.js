@@ -6,7 +6,9 @@ add = (a, b) => {
 };
 class Person {
     constructor(n, age) {
-        this.name = n;
+        if (n) {
+            this.name = n;
+        }
         this.age = age;
     }
     greet(phrase) {

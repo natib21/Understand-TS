@@ -11,7 +11,8 @@ add = (a:number,b:number)=>{
     return a + b
 }
 interface Named {
-    readonly name:string;
+    readonly name?:string;
+    outputName?: string
 }
 
 interface Greetable extends Named {   
@@ -20,10 +21,14 @@ interface Greetable extends Named {
 
 class Person implements Greetable{
    
-    name:string;
+    name?:string;
     age:number
     constructor(n: string,age :number){
-        this.name = n
+
+        if(n){
+
+            this.name = n
+        }
         this.age = age
     }
 
