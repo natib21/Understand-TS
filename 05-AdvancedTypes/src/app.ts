@@ -114,3 +114,13 @@ const userInput = document.getElementById('user-input')
   if(userInput instanceof HTMLInputElement){
     userInput.value = 'Hi There';
   }
+
+interface ErrorContainer {
+    [prop:string] : string // In TypeScript, the index signature (or index property) is used to define types for properties that are not known in advance but follow a specific pattern or type.
+}
+
+
+const error :ErrorContainer = {
+  email:"Not a Valid Email",
+  userName:"Must Start with Capital Character"
+}

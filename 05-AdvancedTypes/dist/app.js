@@ -61,3 +61,7 @@ const userInput = document.getElementById('user-input');
 if (userInput instanceof HTMLInputElement) {
     userInput.value = 'Hi There';
 }
+const error = {
+    email: "Not a Valid Email",
+    userName: "Must Start with Capital Character"
+};
