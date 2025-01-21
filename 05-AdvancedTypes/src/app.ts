@@ -83,12 +83,12 @@ useVehicle(v2)
 
 
 interface Bird {
-    type:'bird' // Type Guard
+ type:'bird' // Type Guard one common property
  flyingSpeed : number
 }
 
 interface Hourse{
-    type:'hourse' // Type Guard
+type:'hourse' // Type Guard one common property
 RunningSpped:number
 }
 
@@ -109,3 +109,8 @@ function moveAnimal(animal:Animal){
 }
 
 moveAnimal({type:"bird",flyingSpeed:1200})
+
+const userInput = document.getElementById('user-input')
+  if(userInput instanceof HTMLInputElement){
+    userInput.value = 'Hi There';
+  }
