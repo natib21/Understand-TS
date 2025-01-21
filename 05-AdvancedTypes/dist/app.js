@@ -11,6 +11,8 @@ function add(a, b) {
     }
     return a + b;
 }
+const result = add(1, "min");
+console.log(result);
 function printEmployeeInformation(emp) {
     console.log('Name: ' + emp.name);
     if ('privilages' in emp) { // Type Guard
@@ -63,5 +65,5 @@ if (userInput instanceof HTMLInputElement) {
 }
 const error = {
     email: "Not a Valid Email",
-    userName: "Must Start with Capital Character"
+    userName: "Must Start with a Capital Character!"
 };

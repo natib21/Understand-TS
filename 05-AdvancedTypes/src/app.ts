@@ -23,13 +23,19 @@ type Numeric = number | boolean
 
 type Universal = Combinable & Numeric  // intersection Types
 
-
+function add(n:number,b:number):number
+function add(n:string,b:string):string
+function add(a:number,b:string):string
+function add(a:string,b:number):string
 function add ( a: Combinable , b: Combinable){
     if(typeof a === "string" || typeof b === "string"){ // Type Guard
         return a.toString() + b.toString()
     }
     return a + b
 }
+
+const result = add(1,"min")
+console.log(result)
 
 type UnknownEmployee = Admin | Employee
 
@@ -122,5 +128,5 @@ interface ErrorContainer {
 
 const error :ErrorContainer = {
   email:"Not a Valid Email",
-  userName:"Must Start with Capital Character"
+  userName:"Must Start with a Capital Character!"
 }
