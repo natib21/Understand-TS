@@ -14,3 +14,14 @@ function merge(obj1, obj2) {
 }
 const merged = merge({ Name: "Nathnael" }, { Age: 28 });
 console.log(merged);
+function countAndDescribe(ele) {
+    let description = 'Got No Value';
+    if (ele.length === 1) {
+        description = "Got 1 Element";
+    }
+    else if (ele.length > 1) {
+        description = 'Got ' + ele.length + ' Elements';
+    }
+    return [ele, description];
+}
+console.log(countAndDescribe(['man', 'woman']));

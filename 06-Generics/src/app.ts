@@ -12,10 +12,27 @@
 const names: Array<string> =[]   // Building Generics
 
 
-function merge<T, U>(obj1: T, obj2: U){
+function merge<T extends object, U extends object>(obj1: T, obj2: U){ // Working With Constraints 
     return Object.assign({}, obj1, obj2);
 }
 
 const merged = merge({ Name: "Nathnael" }, { Age: 28 });
 console.log(merged);
 
+ interface Lengthy {
+    length:number
+ }
+
+ function countAndDescribe<T extends Lengthy>(ele: T):[T,string]{
+    let description ='Got No Value'
+
+    if(ele.length === 1){
+        description = "Got 1 Element"
+    }else if(ele.length > 1){
+        description = 'Got '+ ele.length +' Elements'
+    }
+
+    return [ele,description]
+ }
+
+ console.log(countAndDescribe(['man','woman']))
