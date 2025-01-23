@@ -12,3 +12,10 @@
 const names: Array<string> =[]   // Building Generics
 
 
+function merge<T, U>(obj1: T, obj2: U){
+    return Object.assign({}, obj1, obj2);
+}
+
+const merged = merge({ Name: "Nathnael" }, { Age: 28 });
+console.log(merged);
+

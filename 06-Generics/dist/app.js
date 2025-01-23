@@ -9,3 +9,8 @@
 //  to define types that can be used with different data types
 //  without losing the benefits of type checking.
 const names = []; // Building Generics
+function merge(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+const merged = merge({ Name: "Nathnael" }, { Age: 28 });
+console.log(merged);
