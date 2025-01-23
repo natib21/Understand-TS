@@ -32,3 +32,22 @@ function extractAndConvert(obj, key) {
     return 'Value: ' + obj[key];
 }
 console.log(extractAndConvert({ name: 'Max' }, 'name'));
+// Generics Classes
+class DataStorage {
+    constructor() {
+        this.Data = [];
+    }
+    addItem(item) {
+        this.Data.push(item);
+    }
+    removeItem(item) {
+        this.Data.splice(this.Data.indexOf(item), 1);
+    }
+    getItem() {
+        return [...this.Data];
+    }
+}
+const textString = new DataStorage();
+textString.addItem("Nathnael");
+textString.addItem("Hello World");
+const numberString = new DataStorage();

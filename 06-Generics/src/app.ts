@@ -49,4 +49,26 @@ console.log(merged);
  console.log(extractAndConvert({name: 'Max'},'name'))
 
 
+// Generics Classes
 
+class DataStorage<T extends string | number | boolean> {
+    private Data: T[] =[]
+
+    addItem(item:T){
+        this.Data.push(item)
+    }
+    removeItem(item:T){
+        this.Data.splice(this.Data.indexOf(item),1)
+    }
+    getItem(){
+        return [...this.Data]
+    }
+}
+
+
+const textString = new DataStorage<string>()
+textString.addItem("Nathnael")
+textString.addItem("Hello World")
+
+
+const numberString = new DataStorage<number>()
