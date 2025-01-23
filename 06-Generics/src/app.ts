@@ -36,3 +36,17 @@ console.log(merged);
  }
 
  console.log(countAndDescribe(['man','woman']))
+
+
+  //   The extends keyof syntax in TypeScript 
+  //  is used to create type constraints that
+  //  ensure a value is one of the keys of a given type.
+
+ function extractAndConvert<T extends object , U extends keyof T>(obj: T,key: U ){
+    return 'Value: ' + obj[key]
+ }
+
+ console.log(extractAndConvert({name: 'Max'},'name'))
+
+
+

@@ -25,3 +25,10 @@ function countAndDescribe(ele) {
     return [ele, description];
 }
 console.log(countAndDescribe(['man', 'woman']));
+//   The extends keyof syntax in TypeScript 
+//  is used to create type constraints that
+//  ensure a value is one of the keys of a given type.
+function extractAndConvert(obj, key) {
+    return 'Value: ' + obj[key];
+}
+console.log(extractAndConvert({ name: 'Max' }, 'name'));
