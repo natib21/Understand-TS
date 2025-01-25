@@ -5,19 +5,24 @@ function Logger(message: string) {
   };
 }
 
-function WithTemplate(template: string, hookId: string) {
-  return function (constructor: any) {
-    const el = document.getElementById(hookId);
-    if (el) {
-      const p = new constructor();
-      el.innerHTML = template;
-      const h1 = el.querySelector('h1');
-      if (h1) {
-        h1.textContent = p.name;
-      }
+function WithTemplate(template: string, hookId: string)  {
+  return function<T extends {new(...args: any[]):{name:string}}> (originalConstructor: T)     {
+    return class extends originalConstructor     {
+        constructor(...args: any[])   {
+         super()
+         const el = document.getElementById(hookId);
+         if (el)     {
+         
+         el.innerHTML = template;
+         const h1 = el.querySelector('h1');
+         if (h1)    {
+         h1.textContent = this.name;
+        }
+     }
+        }
+     }
+     };
     }
-  };
-}
 
 // Class Decorator
 @Logger('Logging _ person')

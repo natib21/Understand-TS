@@ -15,16 +15,20 @@ function Logger(message) {
     };
 }
 function WithTemplate(template, hookId) {
-    return function (constructor) {
-        const el = document.getElementById(hookId);
-        if (el) {
-            const p = new constructor();
-            el.innerHTML = template;
-            const h1 = el.querySelector('h1');
-            if (h1) {
-                h1.textContent = p.name;
+    return function (originalConstructor) {
+        return class extends originalConstructor {
+            constructor(...args) {
+                super();
+                const el = document.getElementById(hookId);
+                if (el) {
+                    el.innerHTML = template;
+                    const h1 = el.querySelector('h1');
+                    if (h1) {
+                        h1.textContent = this.name;
+                    }
+                }
             }
-        }
+        };
     };
 }
 // Class Decorator
