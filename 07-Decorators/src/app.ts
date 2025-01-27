@@ -10,7 +10,7 @@ function WithTemplate(template: string, hookId: string)  {
     return class extends originalConstructor     {
         constructor(...args: any[])   {
          super()
-         const el = document.getElementById(hookId);
+         const el = document.getElementById(hookId)!;
          if (el)     {
          
          el.innerHTML = template;
@@ -109,3 +109,33 @@ const p = new Printer()
 const btn = document.querySelector('button')!
 console.log(btn)
 btn?.addEventListener('click',p.showMessage)
+
+
+
+
+
+
+class Course {
+    title: string;
+    price:number
+
+    constructor(t: string,p :number){
+        this.title = t;
+        this.price = p
+    }
+}
+
+const courseForm = document.querySelector('form')!
+courseForm.addEventListener('submit',e =>{
+    e.preventDefault()
+
+const titleEl = document.getElementById('title') as HTMLInputElement
+const priceEl = document.getElementById('price') as HTMLInputElement
+
+const title = titleEl.value
+const price = +priceEl.value
+
+const createCourse = new Course(title,price)
+
+console.log(createCourse)
+})

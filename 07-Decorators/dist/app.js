@@ -121,3 +121,19 @@ const p = new Printer();
 const btn = document.querySelector('button');
 console.log(btn);
 btn === null || btn === void 0 ? void 0 : btn.addEventListener('click', p.showMessage);
+class Course {
+    constructor(t, p) {
+        this.title = t;
+        this.price = p;
+    }
+}
+const courseForm = document.querySelector('form');
+courseForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const titleEl = document.getElementById('title');
+    const priceEl = document.getElementById('price');
+    const title = titleEl.value;
+    const price = +priceEl.value;
+    const createCourse = new Course(title, price);
+    console.log(createCourse);
+});
