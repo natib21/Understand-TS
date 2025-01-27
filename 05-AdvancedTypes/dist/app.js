@@ -67,3 +67,6 @@ const error = {
     email: "Not a Valid Email",
     userName: "Must Start with a Capital Character!"
 };
+const userName = null;
+const storedData = userName !== null && userName !== void 0 ? userName : 'DEFAULT VALUE'; // Nullish Coalescing
+console.log(storedData);

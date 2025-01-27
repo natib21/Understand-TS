@@ -66,9 +66,12 @@ class DataStorage<T extends string | number | boolean> {
 }
 
 
-const textString = new DataStorage<string>()
+const textString = new DataStorage<string>() // it Work on String
 textString.addItem("Nathnael")
 textString.addItem("Hello World")
 
 
-const numberString = new DataStorage<number>()
+const numberString = new DataStorage<number>()// it work on number
+
+
+

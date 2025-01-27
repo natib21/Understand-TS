@@ -7,9 +7,10 @@ interface AddFn {
 }
 
 let add: AddFn
-add = (a:number,b:number)=>{
+add = (a:number,b:number)=> {
     return a + b
 }
+
 interface Named {
     readonly name?:string;
     outputName?: string
@@ -19,11 +20,11 @@ interface Greetable extends Named {
     greet(phrase: string): void
 }
 
-class Person implements Greetable{
+class Person implements Greetable {
    
     name?:string;
     age:number
-    constructor(n: string,age :number){
+    constructor(n: string,age :number) {
 
         if(n){
 

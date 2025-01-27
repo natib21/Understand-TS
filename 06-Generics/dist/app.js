@@ -47,7 +47,7 @@ class DataStorage {
         return [...this.Data];
     }
 }
-const textString = new DataStorage();
+const textString = new DataStorage(); // it Work on String
 textString.addItem("Nathnael");
 textString.addItem("Hello World");
-const numberString = new DataStorage();
+const numberString = new DataStorage(); // it work on number

@@ -21,12 +21,13 @@ console.log(el)
 type Combinable = string | number
 type Numeric = number | boolean
 
-type Universal = Combinable & Numeric  // intersection Types
+type Universal = Combinable & Numeric    // intersection Types
 
-function add(n:number,b:number):number
-function add(n:string,b:string):string
-function add(a:number,b:string):string
-function add(a:string,b:number):string
+function add(n:number,b:number):number   // Overload
+function add(n:string,b:string):string   // Overload
+function add(a:number,b:string):string   // Overload
+function add(a:string,b:number):string   // Overload
+
 function add ( a: Combinable , b: Combinable){
     if(typeof a === "string" || typeof b === "string"){ // Type Guard
         return a.toString() + b.toString()
@@ -89,12 +90,12 @@ useVehicle(v2)
 
 
 interface Bird {
- type:'bird' // Type Guard one common property
+ type:'bird'       // Type Guard one common property
  flyingSpeed : number
 }
 
 interface Hourse{
-type:'hourse' // Type Guard one common property
+type:'hourse'      // Type Guard one common property
 RunningSpped:number
 }
 
@@ -127,6 +128,11 @@ interface ErrorContainer {
 
 
 const error :ErrorContainer = {
-  email:"Not a Valid Email",
-  userName:"Must Start with a Capital Character!"
+  email:    "Not a Valid Email",
+  userName: "Must Start with a Capital Character!"
 }
+
+
+const userName = null
+const storedData = userName ?? 'DEFAULT VALUE'  // Nullish Coalescing
+console.log(storedData)
