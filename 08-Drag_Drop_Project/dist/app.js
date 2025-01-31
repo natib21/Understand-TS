@@ -40,12 +40,26 @@ function autobind(target, methodName, descriptor) {
     };
     return adjDescriptor;
 }
-/* class ProjectList {
-    templateElement:HTMLTemplateElement;
-    hostElement:HTMLDivElement;
-    element:HTMLElement;
+class ProjectList {
+    constructor(type) {
+        this.type = type;
+        this.templateElement = document.getElementById('project-list');
+        this.hostElement = document.getElementById('app');
+        const importedNode = document.importNode(this.templateElement.content, true);
+        this.element = importedNode.firstElementChild;
+        this.element.id = `${this.type}-projects`;
+        this.attach();
+        this.renderContent();
+    }
+    attach() {
+        this.hostElement.insertAdjacentElement('beforeend', this.element);
+    }
+    renderContent() {
+        const listId = `${this.type}-projects-list`;
+        this.element.querySelector('ul').id = listId;
+        this.element.querySelector('h2').textContent = this.type.toUpperCase() + ' PROJECTS';
+    }
 }
- */
 class ProjectInput {
     constructor() {
         this.templateElement = document.getElementById('project-input');
@@ -114,4 +128,6 @@ __decorate([
     autobind
 ], ProjectInput.prototype, "submitHandler", null);
 const project = new ProjectInput();
+const activeProjectLst = new ProjectList('active');
+const finshedProjectLst = new ProjectList('finished');
 /// Lecture 123
