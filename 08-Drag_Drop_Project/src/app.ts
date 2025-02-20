@@ -1,3 +1,60 @@
+// State Management
+ enum ProjectStatus {Active,Finished}
+
+
+class Project {
+
+    constructor(
+        public id:string,
+        public title :string,
+        public description:string,
+        public numberOfPeople:number,
+        public status: ProjectStatus
+    ){}
+}
+type Listners = (item:Project[]) => void;
+
+ 
+ class ProjectStateMgmg {
+     private listeners :Listners[] = [];
+     private projects :Project [] = [];
+     private static instance:ProjectStateMgmg;
+     
+     private constructor(){
+
+     }
+ static getInstance(){
+    if(this.instance){
+        return this.instance
+    }
+    this.instance = new ProjectStateMgmg()
+    return this.instance;
+ }
+ addListner(Listner: Listners){
+    this.listeners.push(Listner);
+  }
+     addProject(title:string, description :string ,numberOfPeople:number){
+
+        const newProject = new Project(
+            Math.random().toString(),
+            title,
+            description,
+            numberOfPeople,
+            ProjectStatus.Active
+        ) 
+          
+        this.projects.push(newProject);
+        for (const listnerFn of this.listeners){
+            listnerFn(this.projects.slice());
+        }
+     }
+    
+
+ }
+
+ const projectState = ProjectStateMgmg.getInstance();
+ 
+
 interface Validatable {
     value : string | number ;
     required? : boolean;
@@ -51,7 +108,7 @@ class ProjectList {
     templateElement:HTMLTemplateElement;
     hostElement:HTMLDivElement;
     element:HTMLElement;
-
+    assignedProjects:Project [] = [];
 
     constructor(private type: 'active'|'finished'){
               this.templateElement = document.getElementById('project-list')! as HTMLTemplateElement
@@ -59,12 +116,33 @@ class ProjectList {
               const importedNode = document.importNode(this.templateElement.content,true)
               this.element = importedNode.firstElementChild as HTMLElement
               this.element.id = `${this.type}-projects`
+              projectState.addListner((projects: Project[])=>{
+              
+              const relavantProjects = projects.filter((item)=> {
+                    if(this.type === 'active'){
+                        return item.status === ProjectStatus.Active
+                    }
+                    return item.status === ProjectStatus.Finished;
+                })
+
+                this.assignedProjects = relavantProjects;
+                this.renderProjects()
+              });
               this.attach()   
               this.renderContent()
         }
 
         private attach(){
             this.hostElement.insertAdjacentElement('beforeend',this.element)
+        }
+        private renderProjects(){
+          const listEl = document.getElementById(`${this.type}-projects-list`)! as HTMLUListElement 
+          listEl.innerHTML ="";
+          for (const prjItem of this.assignedProjects){
+            const listItem = document.createElement('li');
+            listItem.textContent = prjItem.title;
+            listEl.appendChild(listItem);
+          }
         }
 
         private renderContent(){
@@ -122,8 +200,6 @@ class ProjectInput {
             min:1,
             max:5
         }
-       
-
         if(
         !validate(titleValidatable) || 
         !validate(descriptionValidatable) || 
@@ -151,6 +227,7 @@ class ProjectInput {
      if(Array.isArray(userInput)){
         const [title,desc,people] = userInput;
          console.log(title,desc,people)
+         projectState.addProject(title,desc,people);
          this.clear()
      }
     }
@@ -167,8 +244,8 @@ class ProjectInput {
 } 
 
 
-const project  = new ProjectInput()
-const activeProjectLst = new ProjectList('active')
-const finshedProjectLst = new ProjectList('finished')
+const project  = new ProjectInput();
+const activeProjectLst = new ProjectList('active');
+const finshedProjectLst = new ProjectList('finished');
 
 /// Lecture 123
