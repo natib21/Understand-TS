@@ -1,5 +1,15 @@
-// State Management
- enum ProjectStatus {Active,Finished}
+
+interface Dragaable{
+    dragStartHandler(event: DragEvent):void;
+    dragEndHandler(event: DragEvent):void;
+} 
+interface DragTarget{
+    dragOverHandler(event: DragEvent):void;
+    dropHandler(event: DragEvent):void;
+    dragLeaveHandler(event: DragEvent):void;
+}
+
+enum ProjectStatus {Active,Finished}
 
 
 class Project {
@@ -138,7 +148,7 @@ abstract class Component<T extends HTMLElement,U extends HTMLElement > {
 
 
 
-class ProjectList extends Component<HTMLDivElement,HTMLElement>{
+class ProjectList extends Component<HTMLDivElement,HTMLElement> implements DragTarget{
    
     assignedProjects:Project [] = [];
 
@@ -147,7 +157,7 @@ class ProjectList extends Component<HTMLDivElement,HTMLElement>{
           this.configure()    
           this.renderContent()
         }
-
+        
       
         private renderProjects(){
           const listEl = document.getElementById(`${this.type}-projects-list`)! as HTMLUListElement 
@@ -156,7 +166,24 @@ class ProjectList extends Component<HTMLDivElement,HTMLElement>{
            new ProjectItem(this.element.querySelector('ul')!.id,prjItem)
           }
         }
+        @autobind
+        dragLeaveHandler(_: DragEvent): void {
+            const listEl = this.element.querySelector('ul')! as HTMLUListElement;
+            listEl.classList.remove('droppable')
+        }
+        @autobind
+        dragOverHandler(_: DragEvent): void {
+            const listEl = this.element.querySelector('ul')! as HTMLUListElement;
+            listEl.classList.add('droppable')
+        }
+        dropHandler(_: DragEvent): void {
+            
+        }
          configure(){
+
+            this.element.addEventListener('dragover',this.dragOverHandler)
+            this.element.addEventListener('dragleave',this.dragLeaveHandler)
+            this.element.addEventListener('drop',this.dropHandler)
             projectState.addListner((projects: Project[])=>{
               
                 const relavantProjects = projects.filter((item)=> {
@@ -178,7 +205,7 @@ class ProjectList extends Component<HTMLDivElement,HTMLElement>{
 }
 
 
-class ProjectItem extends Component<HTMLUListElement,HTMLLIElement> {
+class ProjectItem extends Component<HTMLUListElement,HTMLLIElement> implements Dragaable{
     private projects :Project;
 
     get persons(){
@@ -195,9 +222,17 @@ class ProjectItem extends Component<HTMLUListElement,HTMLLIElement> {
  this.configure()
  this.renderContent()
     }
-
+    @autobind
+ dragStartHandler(event: DragEvent): void {
+    console.log(event);
+    
+}
+dragEndHandler(_: DragEvent): void {
+    console.log('DragEnd')
+}
     configure() {
-        
+         this.element.addEventListener('dragstart',this.dragStartHandler)
+         this.element.addEventListener('dragend',this.dragEndHandler)
     }
     renderContent() {
         this.element.querySelector('h2')!.textContent = this.projects.title;
