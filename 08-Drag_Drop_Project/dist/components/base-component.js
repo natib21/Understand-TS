@@ -13,3 +13,4 @@ export class Component {
         this.hostElement.insertAdjacentElement(insertAtStart ? 'afterbegin' : 'beforeend', this.element);
     }
 }
+//# sourceMappingURL=base-component.js.map
