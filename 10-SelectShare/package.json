@@ -1,0 +1,16 @@
+{
+  "name": "10-selectshare",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server --port=3000"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/leaflet": "^1.9.16",
+    "live-server": "^1.2.2"
+  }
+}
